@@ -1,0 +1,52 @@
+{
+  "name": "understanding-backbone",
+  "version": "1.0.0",
+  "description": "refactoring jquery spaghetti into backbone [with this tutorial](https://github.com/kjbekkelund/writings/blob/master/published/understanding-backbone.md)",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browserify": "^8.0.3",
+    "gulp": "^3.8.10",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.0.2",
+    "browserify-shim": "^3.8.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "http-server": "^0.7.4",
+    "bower": "^1.3.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikedfunk/understanding-backbone.git"
+  },
+  "author": "Mike Funk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikedfunk/understanding-backbone/issues"
+  },
+  "homepage": "https://github.com/mikedfunk/understanding-backbone",
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "browserify": "^7.0.3",
+    "browserify-shim": "^3.8.1",
+    "gulp": "^3.8.10",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.0.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "jquery": "./bower_components/jquery/dist/jquery.js"
+  },
+  "browserify-shim": {
+    "jquery": "$"
+  }
+}
