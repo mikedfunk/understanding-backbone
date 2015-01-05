@@ -2,12 +2,18 @@
 var $ = require('jquery');
 
 /**
+ * Statuses class
+ */
+var Statuses = function() {
+};
+
+/**
  * add the status via ajax and add it to the list elements
  *
  * @param {object} the ajax options
  * @return void
  */
-function addStatus(options) {
+Statuses.prototype.add = function (options) {
   $.ajax({
     url: '/status/index.html',
     type: 'GET',
@@ -15,16 +21,19 @@ function addStatus(options) {
     data: {text: options.text},
     success: options.success
   });
-}
+};
 
 // do this when the document is ready
 $(document).ready(function() {
+  // instantiate the statuses class
+  var statuses = new Statuses();
+
   // on submitting the form
   $('#new-status form').submit(function(e) {
     e.preventDefault();
 
     // call a route via ajax
-    addStatus(
+    statuses.add(
       {
         text: $('#new-status').find('textarea').val(),
         success: function(data) {
