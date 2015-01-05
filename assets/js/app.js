@@ -8,6 +8,30 @@ var Statuses = function() {
 };
 
 /**
+ * new status view class
+ */
+var NewStatusView = function(options) {
+  var statuses = options.statuses;
+
+  // on submitting the form
+  $('#new-status form').submit(function(e) {
+    e.preventDefault();
+
+    // call a route via ajax
+    statuses.add(
+      {
+        text: $('#new-status').find('textarea').val(),
+        success: function(data) {
+          // when it succeeds, append the result to an li
+          $('#statuses>ul').append('<li>' + data + '</li>');
+          $('#new-status').find('textarea').val('');
+        }
+      }
+    );
+  });
+};
+
+/**
  * add the status via ajax and add it to the list elements
  *
  * @param {object} the ajax options
@@ -28,20 +52,5 @@ $(document).ready(function() {
   // instantiate the statuses class
   var statuses = new Statuses();
 
-  // on submitting the form
-  $('#new-status form').submit(function(e) {
-    e.preventDefault();
-
-    // call a route via ajax
-    statuses.add(
-      {
-        text: $('#new-status').find('textarea').val(),
-        success: function(data) {
-          // when it succeeds, append the result to an li
-          $('#statuses>ul').append('<li>' + data + '</li>');
-          $('#new-status').find('textarea').val('');
-        }
-      }
-    );
-  });
+  new NewStatusView({statuses: statuses});
 });
