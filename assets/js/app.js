@@ -12,12 +12,8 @@ function addStatus(options) {
     url: '/status/index.html',
     type: 'GET',
     dataType: 'html',
-    data: { text: $('#new-status').find('textarea').val() },
-    success: function(data) {
-      // when it succeeds, append the result to an li
-      $('#statuses>ul').append('<li>' + data + '</li>');
-      $('#new-status').find('textarea').val('');
-    }
+    data: {text: options.text},
+    success: options.success
   });
 }
 
@@ -28,6 +24,15 @@ $(document).ready(function() {
     e.preventDefault();
 
     // call a route via ajax
-    addStatus();
+    addStatus(
+      {
+        text: $('#new-status').find('textarea').val(),
+        success: function(data) {
+          // when it succeeds, append the result to an li
+          $('#statuses>ul').append('<li>' + data + '</li>');
+          $('#new-status').find('textarea').val('');
+        }
+      }
+    );
   });
 });
